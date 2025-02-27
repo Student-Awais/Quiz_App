@@ -2,11 +2,19 @@ import React from "react";
 import { FaRegFileAlt } from "react-icons/fa";
 import { MdDownloadForOffline } from "react-icons/md";
 import { IoIosCloseCircle } from "react-icons/io";
+import { motion } from "framer-motion";
 
-const Card = ({ data }) => {
+const Card = ({ data, reference }) => {
   return (
     <>
-      <div className=" relative flex-shrink-0 w-36 h-48 bg-slate-600 rounded-3xl p-4 text-zinc-200 overflow-hidden">
+      <motion.div
+        drag
+        dragConstraints={reference}
+        whileDrag={{ scale: 1.1 }}
+        dragElastic={1}
+        dragTransition={{ bounceStiffness: 100, bounceDamping: 10 }}
+        className=" relative flex-shrink-0 w-36 h-48 bg-slate-600 rounded-3xl p-4 text-zinc-200 overflow-hidden"
+      >
         <FaRegFileAlt />
         <p className="text-[10px] tracking-wide leading-3 font-semibold mt-2">
           {data.description}
@@ -35,7 +43,7 @@ const Card = ({ data }) => {
             </div>
           ) : null}
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };
